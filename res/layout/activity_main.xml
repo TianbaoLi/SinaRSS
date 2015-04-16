@@ -1,0 +1,40 @@
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#fdf8b6" >
+
+    <RadioGroup
+        android:id="@+id/rgTab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rb1"
+            style="@style/fragment_tab"
+            android:drawableBottom="@drawable/tab_attention_selector"
+            android:text="在线"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/rb2"
+            style="@style/fragment_tab"
+            android:drawableBottom="@drawable/tab_attention_selector" 
+            android:text="离线" />
+
+        <RadioButton
+            android:id="@+id/rb3"
+            style="@style/fragment_tab"
+            android:drawableBottom="@drawable/tab_attention_selector" 
+            android:text="我的新闻" />
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+</LinearLayout>
