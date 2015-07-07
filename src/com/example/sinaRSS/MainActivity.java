@@ -1,4 +1,6 @@
-package com.example.courseexamplev2;
+package com.example.sinaRSS;
+
+import com.example.sinaRSS.R;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -15,9 +17,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 public class MainActivity extends Activity {
-	private FragmentManager fragmentManager;  
-    private RadioGroup radioGroup; 
-    private MyDatabase myDatabase;
+	private FragmentManager fragmentManager;  //页面
+    private RadioGroup radioGroup; //页面按钮
+    private MyDatabase myDatabase;//数据库
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override  
@@ -37,7 +39,7 @@ public class MainActivity extends Activity {
         radioGroup.setOnCheckedChangeListener(
         		new RadioGroup.OnCheckedChangeListener() {
 			@Override  
-            public void onCheckedChanged(RadioGroup group, int checkedId) {   
+            public void onCheckedChanged(RadioGroup group, int checkedId) {   //通过按顶部按钮实现切换页面
 				
 				Log.v("demo", checkedId + " " + radioGroup.getCheckedRadioButtonId());
 //				if(radioGroup.getCheckedRadioButtonId() == ""){
@@ -45,7 +47,7 @@ public class MainActivity extends Activity {
 //				}
 				RadioButton radioButton = (RadioButton)findViewById(checkedId);
 				
-				int checked_index = 0;
+				int checked_index = 0;//标记当前切换状态
 				
 				if(radioButton.getText().equals("在线")){
 					checked_index = 1;

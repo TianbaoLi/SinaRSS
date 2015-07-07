@@ -1,4 +1,6 @@
-package com.example.courseexamplev2;
+package com.example.sinaRSS;
+
+import com.example.sinaRSS.R;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -23,7 +25,7 @@ public class OnlineTabFragment extends Fragment {
         sv = (MyScrollView)view.findViewById(R.id.sv);
         
         NetworkAsyncTask nat = new NetworkAsyncTask(sv, (MainActivity)getActivity(), inflater);
-        nat.execute();
+        nat.execute();//执行从RSS源上下载数据
         
         return view;  
     } 

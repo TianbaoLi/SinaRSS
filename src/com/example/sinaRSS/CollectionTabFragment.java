@@ -1,6 +1,8 @@
-package com.example.courseexamplev2;
+package com.example.sinaRSS;
 
 import java.io.File;
+
+import com.example.sinaRSS.R;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -32,15 +34,15 @@ public class CollectionTabFragment extends Fragment {
         activity = (MainActivity)getActivity();
         myDatabase = activity.getMyDatabase();
         
-        News[] arrayNews = myDatabase.getAllNewsCollection();
+        News[] arrayNews = myDatabase.getAllNewsCollection();//返回数据库中收藏新闻列表
         
         myScrollView.setActivity((MainActivity)getActivity());
 		myScrollView.setInflater(inflater);
-        for (News news : arrayNews){
+        for (News news : arrayNews){//逐条添加至页面
         	myScrollView.addNews(news, 1);
         }
         
-        if(arrayNews.length == 0)
+        if(arrayNews.length == 0)//没有收藏
         	myScrollView.addNews(new News("nothing in collection", "nothing yet", null), 2);
         
         return view;  

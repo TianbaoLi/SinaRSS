@@ -1,4 +1,4 @@
-package com.example.courseexamplev2;
+package com.example.sinaRSS;
 
 import android.app.Fragment;
 
@@ -7,15 +7,15 @@ public class FragmentFactory {
         Fragment fragment = null;  
         switch (index) {  
             case 1:  
-                fragment = new OnlineTabFragment();  
+                fragment = new OnlineTabFragment();  //在线新闻页面
                 break;  
             case 2:  
-                fragment = new OfflineTabFragment();  
+                fragment = new OfflineTabFragment();  //离线新闻页面
                 break;  
             case 3:  
-                fragment = new CollectionTabFragment();  
+                fragment = new CollectionTabFragment();  //收藏新闻页面
                 break;   
         }  
-        return fragment;  
+        return fragment;  //通过传入的index确定并返回指定页面
     }  
 } 

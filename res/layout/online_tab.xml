@@ -10,12 +10,12 @@
         android:layout_height="wrap_content"
         android:background="#fdf8b6" >
 
-        <com.example.courseexamplev2.MyScrollView
+        <com.example.sinaRSS.MyScrollView
         android:id="@+id/sv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
-        </com.example.courseexamplev2.MyScrollView>
+        </com.example.sinaRSS.MyScrollView>
     </ScrollView>
 
 </LinearLayout>

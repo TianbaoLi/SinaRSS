@@ -1,9 +1,11 @@
-package com.example.courseexamplev2;
+package com.example.sinaRSS;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
+import com.example.sinaRSS.R;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -54,7 +56,7 @@ public class MyScrollView extends LinearLayout {
 		super(context,attrs,defStyle);
 	}
 	
-	public int addNews(News news,int mode){
+	public int addNews(final News news,int mode){//添加一条新闻数据
 		if(mode != 0 && mode != 1 && mode != 2)
 			return 3;
 		if(inflater == null)
@@ -63,24 +65,22 @@ public class MyScrollView extends LinearLayout {
 		View tempView = inflater.inflate(R.layout.news_model, null);
 		TextView tvTitle = (TextView)tempView.findViewById(R.id.tvTitle);
 		TextView tvContent = (TextView)tempView.findViewById(R.id.tvContent);
-		button=(Button)tempView.findViewById(R.id.newschangebtn);
+		button=(Button)tempView.findViewById(R.id.tvadd);
 		tvTitle.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 		tvTitle.setTextColor(Color.rgb(67, 13, 253)); 
 		tvTitle.setText(news.getTitle());
 		tvContent.setText(news.getContent());
 		
 		//add button......................................
-			button.setOnClickListener(new OnClickListener() {	
-				@Override
-				public void onClick(View arg0) {
-					// TODO Auto-generated method stub
-					Intent intent = new Intent();
-					intent.setClass(activity, ChangeToNews.class);
-					activity.startActivity(intent);
-					//activity.finish();
-					
-				}
-			});
+		
+		button.setOnClickListener(new OnClickListener() {	
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				MyDatabase myDatabase = activity.getMyDatabase();
+				myDatabase.collect(news);
+			}
+		});
 		
 		tvTitle.setOnClickListener(new OnClickListener() {
 			

@@ -1,4 +1,4 @@
-package com.example.courseexamplev2;
+package com.example.sinaRSS;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

@@ -1,4 +1,6 @@
-package com.example.courseexamplev2;
+package com.example.sinaRSS;
+
+import com.example.sinaRSS.R;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
@@ -28,7 +30,7 @@ public class OfflineTabFragment extends Fragment {
         myScrollView.setActivity((MainActivity)getActivity());
         myScrollView.setInflater(inflater);
         
-        MyDatabase myDatabase = ((MainActivity)getActivity()).getMyDatabase();
+        MyDatabase myDatabase = ((MainActivity)getActivity()).getMyDatabase();//从数据库加载离线新闻
         News[] arrayNews = myDatabase.getAllNewsOffline();
         for(News news:arrayNews){
         	myScrollView.addNews(news, 0);
@@ -45,7 +47,7 @@ public class OfflineTabFragment extends Fragment {
 			@SuppressLint("ShowToast")
 			@Override
 			public void onClick(View v) {
-				getActivity().startService(new Intent("com.example.CourseExampleV2.DownloadService"));
+				getActivity().startService(new Intent("com.example.sinaRSS.DownloadService"));
 				// TODO Auto-generated method stub
 				Toast.makeText(getActivity(), "Start Download.", Toast.LENGTH_LONG).show();
 			}

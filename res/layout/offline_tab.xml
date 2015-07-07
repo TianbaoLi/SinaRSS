@@ -14,13 +14,13 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true" >
 
-        <com.example.courseexamplev2.MyScrollView
+        <com.example.sinaRSS.MyScrollView
             android:id="@+id/sv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
 
-        </com.example.courseexamplev2.MyScrollView>
+        </com.example.sinaRSS.MyScrollView>
     </ScrollView>
 
     <Button
