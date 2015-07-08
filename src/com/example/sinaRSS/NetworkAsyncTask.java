@@ -25,9 +25,8 @@ public class NetworkAsyncTask extends AsyncTask<Integer, Integer, News[]> {
 	private MainActivity activity = null;
 	private LayoutInflater inflater = null;
 	private HttpClient hClient = null;
-	private String url = "http://rss.sina.com.cn/news/marquee/ddt.xml";
+	private static String url = "http://rss.sina.com.cn/news/marquee/ddt.xml";//RSS源地址
 	private int mode;
-	private DownloadService service = null;
 	
 	public NetworkAsyncTask(MyScrollView msv,MainActivity act,LayoutInflater li){
 		super();
@@ -37,9 +36,35 @@ public class NetworkAsyncTask extends AsyncTask<Integer, Integer, News[]> {
 		mode = 0;
 	}
 	
-	public NetworkAsyncTask(DownloadService srvc){
-		service = srvc;
-		mode = 1;
+	public static void setUrl(int index)
+	{
+		switch(index)
+		{
+			case 0://新闻要闻
+				url="http://rss.sina.com.cn/news/marquee/ddt.xml";
+				break;
+			case 1://国内新闻
+				url="http://rss.sina.com.cn/news/china/focus15.xml";
+				break;
+			case 2://国际新闻
+				url="http://rss.sina.com.cn/news/world/focus15.xml";
+				break;
+			case 3://体育新闻
+				url="http://rss.sina.com.cn/news/allnews/sports.xml";
+				break;
+			case 4://军事新闻
+				url="http://rss.sina.com.cn/jczs/focus.xml";
+				break;
+			case 5://娱乐新闻
+				url="http://rss.sina.com.cn/news/allnews/ent.xml";
+				break;
+			case 6://教育新闻
+				url="http://rss.sina.com.cn/edu/focus19.xml";
+				break;
+			default://新闻要闻
+				url="http://rss.sina.com.cn/news/marquee/ddt.xml";
+				break;
+		}
 	}
 
 	@Override
@@ -58,7 +83,7 @@ public class NetworkAsyncTask extends AsyncTask<Integer, Integer, News[]> {
 			StringBuilder sBuilder = new StringBuilder();
 			
 	        String line = null;
-			while ((line = bReader.readLine()) != null) {
+			while ((line = bReader.readLine()) != null) {//通过HTTP请求读取
 				if(line.indexOf("<item>") == -1)
 					continue;
 				String titleString,contentString,urlString,itemString = null;
@@ -66,7 +91,7 @@ public class NetworkAsyncTask extends AsyncTask<Integer, Integer, News[]> {
 					itemString += line;
 					line = bReader.readLine();
 				}
-				titleString = itemString.substring(itemString.indexOf("<title>")+"<title>".length(),itemString.indexOf("</title>"));
+				titleString = itemString.substring(itemString.indexOf("<title>")+"<title>".length(),itemString.indexOf("</title>"));//整理新闻格式
 				titleString = titleString.substring(titleString.indexOf("CDATA[")+"CDATA[".length(),titleString.lastIndexOf("]") - 1);
 				contentString = itemString.substring(itemString.indexOf("<description>")+"<description>".length(),itemString.indexOf("</description>"));
 				contentString = contentString.substring(contentString.indexOf("CDATA[")+"CDATA[".length(),contentString.lastIndexOf("]") - 1);
@@ -97,11 +122,6 @@ public class NetworkAsyncTask extends AsyncTask<Integer, Integer, News[]> {
 			for (News news : results) {
 				myScrollView.addNews(news,0);
 			}
-		}else if(mode == 1){
-			MyDatabase myDatabase = service.getMyDatabase();
-			myDatabase.refreashOffline(results);
-			Toast.makeText(service, "Download Completed.", Toast.LENGTH_LONG).show();
-			service.stopService(new Intent());
 		}
 	}
 

@@ -11,8 +11,12 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -42,17 +46,13 @@ public class MainActivity extends Activity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {   //通过按顶部按钮实现切换页面
 				
 				Log.v("demo", checkedId + " " + radioGroup.getCheckedRadioButtonId());
-//				if(radioGroup.getCheckedRadioButtonId() == ""){
-//					
-//				}
+
 				RadioButton radioButton = (RadioButton)findViewById(checkedId);
 				
 				int checked_index = 0;//标记当前切换状态
 				
 				if(radioButton.getText().equals("在线")){
 					checked_index = 1;
-				}else if(radioButton.getText().equals("离线")){
-					checked_index = 2;
 				}else if(radioButton.getText().equals("我的新闻")){
 					checked_index = 3;
 				}
@@ -63,6 +63,21 @@ public class MainActivity extends Activity {
                 transaction.commit();  
             }  
         });  
+        
+        Button button;
+        button=(Button) findViewById(R.id.changetype);
+        button.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent;
+				intent = new Intent();
+				intent.setClass(MainActivity.this,ChangeActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(intent);
+				
+			}
+		});
     }  
 
     public MyDatabase getMyDatabase(){

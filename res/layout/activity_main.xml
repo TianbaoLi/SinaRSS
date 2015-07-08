@@ -2,14 +2,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="#fdf8b6" >
+    android:orientation="vertical">
 
     <RadioGroup
         android:id="@+id/rgTab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/changetype"
+            android:layout_width="132dp"
+            android:layout_height="wrap_content"
+            android:text="新闻类型" />
 
         <RadioButton
             android:id="@+id/rb1"
@@ -19,18 +24,12 @@
             android:checked="true" />
 
         <RadioButton
-            android:id="@+id/rb2"
-            style="@style/fragment_tab"
-            android:drawableBottom="@drawable/tab_attention_selector" 
-            android:text="离线" />
-
-        <RadioButton
             android:id="@+id/rb3"
             style="@style/fragment_tab"
             android:drawableBottom="@drawable/tab_attention_selector" 
             android:text="我的新闻" />
     </RadioGroup>
-
+    
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"

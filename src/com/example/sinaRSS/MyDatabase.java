@@ -10,7 +10,6 @@ import android.database.sqlite.SQLiteDatabase;
 public class MyDatabase {
 	private SQLiteDatabase database;
 	private static final String TABLE_NAME = "news",//收藏新闻表
-			TABLE_NAME2 = "offline",//离线新闻表
 	TITLE_COLUMN = "title",//标题
 	CONTENT_COLUMN = "content",//内容
 	LINK_COLUMN = "link";//链接
@@ -26,13 +25,11 @@ public class MyDatabase {
 	private void createTableIfNotExists(){//建表
 		database.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "("+ TITLE_COLUMN + " VARCHAR, " 
             + CONTENT_COLUMN + " VARCHAR, " + LINK_COLUMN + " VARCHAR)" );
-		database.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_NAME2 + "("+ TITLE_COLUMN + " VARCHAR, " 
-	            + CONTENT_COLUMN + " VARCHAR, " + LINK_COLUMN + " VARCHAR)" );
 	}
 	
 	private long insert(String title,String content, String link){//插入收藏
 		ContentValues cValues = new ContentValues();
-		cValues.put(TITLE_COLUMN, title);
+		cValues.put(TITLE_COLUMN, title);	
 		cValues.put(CONTENT_COLUMN, content);
 		cValues.put(LINK_COLUMN, link);
 		return database.insert(TABLE_NAME, null, cValues);
@@ -40,18 +37,6 @@ public class MyDatabase {
 	
 	private int delete(String link){//删除收藏
 		return database.delete(TABLE_NAME, LINK_COLUMN + " = ?", new String[]{link});
-	}
-	
-	private int clearOffline(){//清除离线
-		return database.delete(TABLE_NAME2, null, null);
-	}
-	
-	public long insertOffline(String title,String content, String link){//插入离线
-		ContentValues cValues = new ContentValues();
-		cValues.put(TITLE_COLUMN, title);
-		cValues.put(CONTENT_COLUMN, content);
-		cValues.put(LINK_COLUMN, link);
-		return database.insert(TABLE_NAME2, null, cValues);
 	}
 	
 	private Cursor query(String link){//按连接查询
@@ -82,10 +67,6 @@ public class MyDatabase {
 		return getAllNews(TABLE_NAME);
 	}
 	
-	public News[] getAllNewsOffline(){//返回离线列表
-		return getAllNews(TABLE_NAME2);
-	}
-	
 	private News[] getAllNews(String tableName){//返回tableName中所有新闻信息
 		Cursor c = database.query(false, tableName, null, null, null, null, null, null, null);
 		ArrayList<News> aList = new ArrayList<News>();
@@ -97,19 +78,6 @@ public class MyDatabase {
 			aList.add(tempNews);
 		}
 		return (News[])aList.toArray(new News[0]);
-	}
-	
-	public boolean refreashOffline(News[] arrayNews){//以arrayNews更新离线新闻列表
-		try{
-			clearOffline();
-			for(News news:arrayNews){
-				insertOffline(news.getTitle(),news.getContent(),news.getUri());
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-			return false;
-		}
-		return true;
 	}
 
 }

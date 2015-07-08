@@ -42,9 +42,6 @@ public class CollectionTabFragment extends Fragment {
         	myScrollView.addNews(news, 1);
         }
         
-        if(arrayNews.length == 0)//没有收藏
-        	myScrollView.addNews(new News("nothing in collection", "nothing yet", null), 2);
-        
         return view;  
     } 
 

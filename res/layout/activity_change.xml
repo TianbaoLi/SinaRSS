@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+     <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请选择新闻组别" />
+     
+   <RadioGroup  
+    android:id="@+id/typegroup"  
+    android:layout_width="wrap_content"  
+    android:layout_height="wrap_content"  
+    android:orientation="vertical"
+    >   
+	    <RadioButton
+	        android:id="@+id/radioButton0"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="新闻要闻" />
+	
+	    <RadioButton
+	        android:id="@+id/radioButton1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="国内新闻" />
+	
+	    <RadioButton
+	        android:id="@+id/radioButton2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="国际新闻" />
+	
+	    <RadioButton
+	        android:id="@+id/radioButton3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="体育新闻" />
+	
+	    <RadioButton
+	        android:id="@+id/radioButton4"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="军事新闻" />
+	
+	    <RadioButton
+	        android:id="@+id/radioButton5"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="娱乐新闻" />
+	
+	    <RadioButton
+	        android:id="@+id/radioButton6"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="教育新闻" />
+	    
+	</RadioGroup>   
+
+</LinearLayout>

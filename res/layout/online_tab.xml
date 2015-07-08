@@ -2,20 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#fdf8b6" >
 
-    <ScrollView
+     <ScrollView
         android:id="@+id/sv1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fdf8b6" >
+        android:layout_height="wrap_content" >
 
         <com.example.sinaRSS.MyScrollView
         android:id="@+id/sv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
+
         </com.example.sinaRSS.MyScrollView>
     </ScrollView>
-
+    
 </LinearLayout>
